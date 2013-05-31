@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CamelOne &middot; Integration EveryWhere!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Example from mqtt to AMQP to JMS to Stomp">
+    <meta name="author" content="">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+    <link href="css/camelone.css" rel="stylesheet" type="text/css"/>
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/camel-72.png">
+    <link rel="shortcut icon" type='image/ico' href=" 'favicon.ico;>
+</head>
+
+<body>
+
+
+<div class="masthead">
+    <ul class="nav nav-pills pull-right">
+        <li class="dropdown" id="navmenu">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">Web Sockets
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li id="Connect"><a href="#connect-form">Connect</a></li>
+                <li class="disabled" id="Disconnect"><a href="#disconnect-form">Disconnect</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h1 class="muted">CamelOne: Integration Every Where!</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        <div class="span2">
+            <div id="theCamel" class="container">
+                <img border="0" src="img/camel-standing.png">
+            </div>
+        </div>
+        <div class="span10">
+            <div id="audio" class="container">
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#x" class="overlay" id="connect-form"></a>
+
+<div class="popup">
+    <h2>Connect to Web Sockets</h2>
+
+    <div>
+        <label for="url">URL</label>
+        <input type="text" id="url" value="ws://localhost:61614/stomp"/>
+    </div>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" value="admin"/>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" value="admin"/>
+    </div>
+    <div>
+        <label for="destinationAudio">Audio Destination</label>
+        <input type="text" id="destinationAudio" value="/topic/audio"/>
+    </div>
+    <div>
+        <label for="destinationProcessed">Processed Destination</label>
+        <input type="text" id="destinationProcessed" value="/topic/processed"/>
+    </div>
+    <input type="button" value="Connect" onClick="StompConnect()"/>
+
+    <a class="close" href="#close"></a>
+</div>
+
+<a href="#x" class="overlay" id="disconnect-form"></a>
+
+<div class="popup">
+    <h3>Sure you want to Disconnect to Web Sockets?</h3>
+
+    <div>
+        <input type="button" value="Disconnect" onClick="stompDisconnect()"/>
+    </div>
+    <a class="close" href="#close"></a>
+</div>
+
+
+<!-- /container -->
+
+<script src="lib/jquery-2.0.0.0.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="lib/d3.v3.min.js"></script>
+<script src="lib/dsp.js"></script>
+<script src="lib/stomp.js"></script>
+<script src="js/camelone.js"></script>
+<script src="js/audio-view.js"></script>
+
+
+</body>
+<script language="javascript">window.onload = window.location = "#connect-form";</script>
+</html>

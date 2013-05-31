@@ -1,0 +1,19 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+  <bean id="backendImpl" class="org.fusesource.camel.org.jboss.camel.analyzer.BackEndImpl"/>
+          
+  <camelContext id="rider-auto-backend" trace="false" xmlns="http://camel.apache.org/schema/blueprint">
+    <route id="rider-auto-backend-route">
+      <from uri="activemq:orders" />
+      <bean ref="backendImpl" />
+    </route>
+  </camelContext>
+
+    <!-- Set username and password to values you set in etc/user.properties -->
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent" >
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+        <property name="userName" value="smx"/>
+        <property name="password" value="smx"/>
+    </bean>
+
+</blueprint>

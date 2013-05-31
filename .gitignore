@@ -1,3 +1,25 @@
+target
+jboss-amq
+data
+summit-web
+.idea
+*.iml
+*.im
+*.ipr
+*.iws
+overlays
+.DS_Store
+.settings
+*.swp
+*.log
+.project
+.classpath
+*.fmd
+.cache
+*.log
+dependency-reduced-pom.xml
+
+
 *.class
 
 # Package Files #
