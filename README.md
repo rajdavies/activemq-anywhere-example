@@ -1,13 +1,9 @@
-activemq-anywhere-example
+# ActiveMQ Anywhere Example
 =========================
 
 Example using ActiveMQ and showing bridging MQTT -> &lt;Gateway> ---- AMQP ----- &lt;Broker> ---- JMS + WebSockets.
 
-# ActiveMQ Anywhere Example
-=============================
 
-This is an example of bridging protocols and brokers:
- MQTT -> <ActiveMQ BROKER> ---AMQP----<ACTIVEMQ BROKER>
 	
 
 # Starting the MQTT Gateway
