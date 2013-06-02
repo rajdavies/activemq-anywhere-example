@@ -9,7 +9,7 @@ Example using ActiveMQ and showing bridging MQTT -> &lt;Gateway> ---- AMQP -----
 # Starting the MQTT Gateway
 _________________________
 1. cd activemq/gateway
-2. run bin/gateway
+2. run bin/gateway console
 
 The gateway is an ActiveMQ broker, running in non-persistent mode with
 transport connectors for MQTT ("mqtt://0.0.0.0:1883") and AMQP ("amqp://0.0.0.0:5672")
@@ -20,7 +20,9 @@ on to a Queue (for AMQP)
 # Starting the Broker
 _________________________
 1. cd activemq/broker
-2. run broker/broker
+2. create a directory lib
+4  download the QPid JMS AMQP client library - qpid-java-amqp-1-0-client-jms-0.20 - from http://qpid.apache.org/download.html to the lib/ directory and unpack the jars from the archive
+4. run broker/broker console
 
 The broker in an ActiveMQ broker, running in non-persistent mode (for simplicity) with 
 transport connectors for openwire ("tcp://0.0.0.0:61616") and websockets ("ws://0.0.0.0:61614")
