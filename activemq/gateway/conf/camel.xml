@@ -35,10 +35,8 @@
   
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
 
-        <!-- You can use Spring XML syntax to define the routes here using the <route> element -->
-        <?xml version="1.0"?>
-<route>
-	<description>Example Camel Route</description>
+<route id="TopicToQueue">
+	<description>Move Messages from Topic to a Queue</description>
 	<from uri="activemq:topic:audio"/>
 	<setHeader headerName="JMS_AMQP_MESSAGE_FORMAT">
 		<constant>0</constant>
