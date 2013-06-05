@@ -15,14 +15,17 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:amq="http://activemq.apache.org/schema/core" xmlns:camel="http://camel.apache.org/schema/blueprint" xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="             http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd             http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd             http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd            ">
+	<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/blueprint"
+		xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
+		xsi:schemaLocation="
+		http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+		http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.0.0.xsd
+		http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint-2.10.0.xsd">
 	
 	
-	<camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-
-      
-      <route>
-          <description>Example Camel Route</description>
+	<camelContext id="camel" xmlns="http://camel.apache.org/schema/blueprint">
+      <route id="AMQP2WebSockets">
           <from uri="jms:queue:audio?asyncStartListener=true"/>
           <to uri="activemq:topic:audio"/>
       </route>
@@ -31,7 +34,7 @@
  
 	<bean id="jmsConnectionFactory" 
 	   class="org.apache.activemq.ActiveMQConnectionFactory">
-	   <property name="brokerURL" value="vm://broker?create=false" />
+	   <property name="brokerURL" value="vm://amq?create=false" />
 			<property name="userName" value="${activemq.username}"/>
      <property name="password" value="${activemq.password}"/>
 	</bean>
@@ -58,10 +61,10 @@
   <bean id="jms" class="org.apache.camel.component.jms.JmsComponent" >
       <property name="connectionFactory">
         <bean class="org.apache.qpid.amqp_1_0.jms.impl.ConnectionFactoryImpl">
-          <constructor-arg index = "0" value="localhost"/>
-          <constructor-arg index = "1" value="5672"/>
-          <constructor-arg index = "2" value="${activemq.username}"/>
-          <constructor-arg index = "3" value="${activemq.password}"/>
+          <argument index = "0" value="localhost"/>
+          <argument index = "1" value="5672"/>
+          <argument index = "2" value="${activemq.username}"/>
+          <argument index = "3" value="${activemq.password}"/>
         </bean>
       </property>
   </bean>

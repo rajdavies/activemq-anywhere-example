@@ -91,7 +91,8 @@ JBossFuse:karaf@gateway> features:install jboss-example-broker
 
 The broker:
 transport connectors for MQTT ("mqtt://0.0.0.0:1883") and AMQP ("amqp://0.0.0.0:5672")
-Jetty should be running from the gateway on 8161
+
+Jetty should be running from the broker on 8161
 
 cd jboss-amq/broker
 start bin/amq
@@ -101,8 +102,11 @@ in the shell run:
 JBossFuse:karaf@broker> features:addurl mvn:io.hawt/hawtio-karaf/1.1/xml/features
 JBossFuse:karaf@broker> features:install hawtio
 
+Now install Qpid AMQP-1.0 client as a fuse application bundle:
+
+
 JBossFuse:karaf@broker> features:addurl mvn:org.jboss.fuse.examples/broker/1.0-SNAPSHOT/xml/features
-JBossFuse:karaf@broker> features:install jboss-example-gateway
+JBossFuse:karaf@broker> features:install jboss-example-broker
 
 
 
