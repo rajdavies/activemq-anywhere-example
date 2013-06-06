@@ -26,7 +26,7 @@
 	
 	<camelContext id="camel" xmlns="http://camel.apache.org/schema/blueprint">
       <route id="AMQP2WebSockets">
-          <from uri="jms:queue:audio?asyncStartListener=true"/>
+          <from uri="jms:queue:audio"/>
           <to uri="activemq:topic:audio"/>
       </route>
   </camelContext>
@@ -41,21 +41,15 @@
 
 	<bean id="pooledConnectionFactory" 
 	   class="org.apache.activemq.pool.PooledConnectionFactory" init-method="start" destroy-method="stop">
-	   <property name="maxConnections" value="2" />
+	   <property name="maxConnections" value="1" />
 	   <property name="connectionFactory" ref="jmsConnectionFactory" />
 	</bean>
 
 	<bean id="jmsConfig" 
 	   class="org.apache.camel.component.jms.JmsConfiguration">
 	   <property name="connectionFactory" ref="pooledConnectionFactory"/>
-	   <property name="concurrentConsumers" value="10"/>
+	   <property name="concurrentConsumers" value="2"/>
 	</bean>
-
-	<bean id="activemq" 
-	    class="org.apache.activemq.camel.component.ActiveMQComponent">
-	    <property name="configuration" ref="jmsConfig"/>
-	</bean>
-
 
 	<!-- configure the camel jms  component to use amqp from the gateway broker -->
   <bean id="jms" class="org.apache.camel.component.jms.JmsComponent" >
@@ -63,9 +57,20 @@
         <bean class="org.apache.qpid.amqp_1_0.jms.impl.ConnectionFactoryImpl">
           <argument index = "0" value="localhost"/>
           <argument index = "1" value="5672"/>
-          <argument index = "2" value="${activemq.username}"/>
-          <argument index = "3" value="${activemq.password}"/>
+          <argument index = "2" value="admin"/>
+          <argument index = "3" value="admin"/>
         </bean>
       </property>
   </bean>
+
+	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<property name="connectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL" value="vm://broker-amq?create=false"/>
+				<property name="userName" value="admin"/>
+				<property name="password" value="admin"/>
+			</bean>
+		</property>
+	</bean>
+
 </blueprint>
