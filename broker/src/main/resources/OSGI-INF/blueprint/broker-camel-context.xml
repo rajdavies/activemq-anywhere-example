@@ -34,7 +34,7 @@
  
 	<bean id="jmsConnectionFactory" 
 	   class="org.apache.activemq.ActiveMQConnectionFactory">
-	   <property name="brokerURL" value="vm://amq?create=false" />
+	   <property name="brokerURL" value="vm://broker-amq?create=false" />
 			<property name="userName" value="${activemq.username}"/>
      <property name="password" value="${activemq.password}"/>
 	</bean>
