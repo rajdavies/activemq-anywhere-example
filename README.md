@@ -1,7 +1,7 @@
 # ActiveMQ Anywhere Example
 =========================
 
-Example using ActiveMQ and showing bridging MQTT -> &lt;Gateway> ---- AMQP ----- &lt;Broker> ---- JMS + WebSockets.
+Example using Apache ActiveMQ and showing bridging MQTT -> &lt;Gateway> ---- AMQP ----- &lt;Broker> ---- JMS + WebSockets.
 
 
 	
