@@ -1,0 +1,9 @@
+---
+buildName: "activemq-anywhere-example"
+links:
+  Git: "https://github.com/rajdavies/activemq-anywhere-example"
+  Job: "http://192.168.64.83:32053/job/activemq-anywhere-example"
+  Testing: "http://10.0.0.205:80/kubernetes/pods?namespace=default-testing"
+environments:
+  Testing: "default-testing"
+useLocalFlow: true
